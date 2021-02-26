@@ -21,7 +21,7 @@ class CheckGuest
             return $next($request);
         }else{
             $gusetkey = $request->header('Authorization');
-            if($gusetkey == '$2y$12$ZtgKLOyfvyXH33JE67Ei0.qupt771t62d21M4/OJumBmsZ1bexxpCPiuhfdRK'){
+            if($gusetkey == '$2y$12$ZtgKLOyfvyXH33JE67Ei0.qupt771t62d21M4/OJumBmsZ1bexxpCPiuhfdRKz'){
                 return $next($request);
             }
             $response = APIHelpers::createApiResponse(true , 401 ,  'توكن زائر خاطيء' , null );
