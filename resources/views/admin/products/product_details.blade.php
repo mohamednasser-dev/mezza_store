@@ -49,12 +49,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="label-table" > {{ __('messages.user') }} </td>
-                            <td>
-                                {{ $data->user->name }}
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="label-table" > {{ __('messages.product_description') }} </td>
                             <td>
                                 {{ $data->description }}
@@ -67,23 +61,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="label-table" > {{ __('messages.city') }}</td>
+                            <td class="label-table" > {{ __('messages.brand') }}</td>
                             <td>
                                 @if(app()->getLocale() == 'ar')
-                                    {{ $data->City->title_ar }}
+                                    {{ $data->Brand->title_ar }}
                                 @else
-                                    {{ $data->City->title_en }}
+                                    {{ $data->Brand->title_en }}
                                 @endif
                             </td>
                         </tr>
                         <tr>
-                            <td class="label-table" > {{ __('messages.area') }}</td>
+                            <td class="label-table" > {{ __('messages.colors') }}</td>
                             <td>
-                                @if(app()->getLocale() == 'ar')
-                                    {{ $data->Area->title_ar }}
-                                @else
-                                    {{ $data->Area->title_en }}
-                                @endif
+                                @foreach($data->Colors as $row)
+                                (
+                                    @if(app()->getLocale() == 'ar')
+                                        {{ $row->Color->title_ar }}
+                                    @else
+                                        {{ $row->Color->title_en }}
+                                    @endif
+                                )  
+                                @endforeach
                             </td>
                         </tr>
                     </tbody>

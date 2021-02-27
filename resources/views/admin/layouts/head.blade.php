@@ -44,7 +44,11 @@
         <!--  BEGIN CUSTOM STYLE FILE  -->
         <link href="/admin/rtl/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
         <link href="/admin/rtl/assets/css/components/tabs-accordian/custom-accordions.css" rel="stylesheet" type="text/css" />
+
+        <link href="/admin/rtl/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="/admin/rtl/plugins/select2/select2.min.css">
         <!--  END CUSTOM STYLE FILE  -->
+
     @endif
     @if (App::isLocale('en'))
         <meta charset="utf-8">
@@ -89,6 +93,9 @@
         <!--  BEGIN setting page  -->
         <link href="/admin/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
         <link href="/admin/assets/css/components/tabs-accordian/custom-accordions.css" rel="stylesheet" type="text/css" />
+
+        <link href="/admin/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="/admin/plugins/select2/select2.min.css">
         <!--  END setting page  -->
     @endif
 

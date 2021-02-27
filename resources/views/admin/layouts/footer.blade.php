@@ -13,7 +13,14 @@
 
 
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-<script src="/admin/assets/js/libs/jquery-3.1.1.min.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous">
+</script>
+
+<!-- <script src="/admin/assets/js/libs/jquery-3.1.1.min.js"></script> -->
 <script src="/admin/bootstrap/js/popper.min.js"></script>
 <script src="/admin/bootstrap/js/bootstrap.min.js"></script>
 <script src="/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -40,6 +47,10 @@
 <script src="/admin/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+<script src="assets/js/scrollspyNav.js"></script>
+    <script src="/admin/plugins/select2/select2.min.js"></script>
+    <script src="/admin/plugins/select2/custom-select2.js"></script>
 
 {{--to generat toaster--}}
 <script src="/admin/plugins/toast-master/js/jquery.toast.js"></script>

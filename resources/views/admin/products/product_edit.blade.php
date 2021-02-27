@@ -64,20 +64,6 @@
         </div>
 
     </div>
-        <div class="form-group">
-            @php $users =  \App\User::orderBy('created_at', 'desc')->get(); @endphp
-            <label for="sel1">{{ __('messages.user') }}</label>
-            <select class="form-control" name="user_id" id="sel1">
-                <option selected disabled>{{ __('messages.select') }}</option>
-                @foreach ($users as $user)
-                    @if($data->user_id  == $user->id)
-                        <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
-                    @else
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endif
-                @endforeach
-            </select>
-        </div>
         {{--// 0--}}
         <div class="form-group">
             @php $cats = \App\Category::where('deleted',0)->get(); @endphp
@@ -124,97 +110,6 @@
                 @endforeach
             </select>
         </div>
-        {{--// 2--}}
-        <div class="form-group" id="sub_two_cat_cont">
-            @php $sub_two_cats = \App\SubTwoCategory::where('deleted',0)->get(); @endphp
-            <label for="sel1">{{ __('messages.sub_category_second') }}</label>
-            <select class="form-control" name="sub_category_two_id" id="cmb_sub_two_cat">
-                <option selected>{{ __('messages.choose_sub_two_category') }}</option>
-                @foreach ($sub_two_cats as $row)
-                    @if($data->sub_category_two_id  == $row->id)
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}" selected>{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}" selected>{{ $row->title_ar }}</option>
-                        @endif
-                    @else
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                        @endif
-                    @endif
-                @endforeach
-            </select>
-        </div>
-        {{--// 3--}}
-        <div class="form-group" id="sub_three_cat_cont">
-            @php $sub_three_cats = \App\SubThreeCategory::where('deleted',0)->get(); @endphp
-            <label for="sel1">{{ __('messages.sub_category_third') }}</label>
-            <select class="form-control" name="sub_category_three_id" id="cmb_sub_three_cat">
-                <option selected>{{ __('messages.choose_sub_three_category') }}</option>
-                @foreach ($sub_three_cats as $row)
-                    @if($data->sub_category_three_id  == $row->id)
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}" selected>{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}" selected>{{ $row->title_ar }}</option>
-                        @endif
-                    @else
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                        @endif
-                    @endif
-                @endforeach
-            </select>
-        </div>
-        {{--// 4--}}
-        <div class="form-group" id="sub_four_cat_cont">
-            @php $sub_four_cats = \App\SubFourCategory::where('deleted',0)->get(); @endphp
-            <label for="sel1">{{ __('messages.sub_category_fourth') }}</label>
-            <select class="form-control" name="sub_category_four_id" id="cmb_sub_four_cat">
-                <option selected>{{ __('messages.choose_sub_four_category') }}</option>
-                @foreach ($sub_four_cats as $row)
-                    @if($data->sub_category_four_id  == $row->id)
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}" selected>{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}" selected>{{ $row->title_ar }}</option>
-                        @endif
-                    @else
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                        @endif
-                    @endif
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group" id="sub_five_cat_cont">
-            @php $sub_five_cats = \App\SubFiveCategory::where('deleted','0')->get(); @endphp
-            <label for="sel1">{{ __('messages.sub_category_fifth') }}</label>
-            <select class="form-control" name="sub_category_five_id" id="cmb_sub_five_cat">
-                <option selected>{{ __('messages.choose_sub_five_category') }}</option>
-                @foreach ($sub_five_cats as $row)
-                    @if($data->sub_category_five_id  == $row->id)
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}" selected>{{$row->title_en}}</option>
-                        @else
-                            <option value="{{ $row->id }}" selected>{{$row->title_ar}}</option>
-                        @endif
-                    @else
-                        @if( app()->getLocale() == 'en')
-                            <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                        @else
-                            <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                        @endif
-                    @endif
-                @endforeach
-            </select>
-        </div>
         <div class="form-group mb-4">
             <label for="title">{{ __('messages.product_name') }}</label>
             <input required type="text" name="title" value="{{$data->title}}" class="form-control" id="title"
@@ -231,69 +126,35 @@
             <label for="description">{{ __('messages.product_description') }}</label>
             <textarea required name="description" placeholder="{{ __('messages.product_description') }}" class="form-control" id="description" rows="5">{{$data->description}}</textarea>
         </div>
-        <h4>{{ __('messages.city') }}</h4>
-                    <div class="form-group" id="city_cont">
-                        @php $cities = \App\City::where('deleted','0')->get(); @endphp
-                        <select required class="form-control" name="city_id" id="cmb_city_id">
-                            <option selected>{{ __('messages.choose_city') }}</option>
-                            @foreach ($cities as $row)
-                                @if($row->id == $data->city_id )
-                                    @if( app()->getLocale() == 'en')
-                                        <option selected value="{{ $row->id }}">{{ $row->title_en }}</option>
-                                    @else
-                                        <option selected value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                                    @endif
-                                @else
-                                    @if( app()->getLocale() == 'en')
-                                        <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                                    @else
-                                        <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group" id="area_cont" >
-                        @php $areas = \App\Area::where('deleted','0')->get(); @endphp
-                        <select required class="form-control" name="area_id" id="cmb_area_id">
-                            <option selected>{{ __('messages.choose_area') }}</option>
-                            @foreach ($areas as $row)
-                            @if($row->id == $data->area_id )
-                                    @if( app()->getLocale() == 'en')
-                                        <option selected value="{{ $row->id }}">{{ $row->title_en }}</option>
-                                    @else
-                                        <option selected value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                                    @endif
-                                @else
-                                    @if( app()->getLocale() == 'en')
-                                        <option value="{{ $row->id }}">{{ $row->title_en }}</option>
-                                    @else
-                                        <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <h4>{{ __('messages.map_location') }}</h4>
-                    <div class="form-group row">
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <label for="title">{{ __('messages.share_location') }}</label>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                            <label class="switch s-icons s-outline  s-outline-primary  mb-4 mr-2">
-                                <input type="checkbox" name="share_location" @if($data->share_location == '1') checked @endif >
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <input required type="text" value="{{ $data->longitude }}" name="longitude" class="form-control" placeholder="{{ __('messages.longitude') }}">
-                        </div>
-                        <div class="col-md-6">
-                            <input required type="text" value="{{ $data->latitude }}" name="latitude" class="form-control" placeholder="{{ __('messages.latitude') }}">
-                        </div>
-                    </div>
+        <h4>{{ __('messages.brand') }}</h4>
+    <div class="form-group" id="city_cont">
+        @php $brands = \App\Marka::where('deleted','0')->get(); @endphp
+        <select required class="form-control" name="brand_id" id="cmb_city_id">
+            <option selected>{{ __('messages.choose_brand') }}</option>
+            @foreach ($brands as $row)
+                @if( app()->getLocale() == 'en')
+                    <option value="{{ $row->id }}">{{ $row->title_en }}</option>
+                @else
+                    <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <h4>{{ __('messages.colors') }}</h4>
+    <div class="form-group" id="area_cont">
+        @php $colors = \App\Color::where('deleted','0')->get(); @endphp
+        <select class="form-control tagging" name="colors[]" multiple="multiple">
+            @foreach ($colors as $row)
+                <option value='{{$row->id}}'>
+                    @if(app()->getLocale() == 'ar') 
+                        {{$row->title_ar}}
+                    @else
+                        {{$row->title_en}}
+                    @endif
+                </option>
+            @endforeach
+        </select>
+    </div>
     <input type="submit" value="{{ __('messages.edit') }}" class="btn btn-primary">
 </form>
 </div>
@@ -301,4 +162,9 @@
 @endsection
 @section('scripts')
     <script src="/admin/assets/js/generate_categories.js"></script>
+    <script>
+        $(".tagging").select2({
+            tags: true
+        });
+    </script>
 @endsection

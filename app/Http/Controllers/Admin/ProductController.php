@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\categories\OptionsValuesController;
 use App\Plan;
 use App\Area;
 use App\Plan_details;
+use App\Product_color;
 use App\Product_feature;
 use App\SubCategory;
 use App\SubFiveCategory;
@@ -48,22 +49,15 @@ class ProductController extends AdminController
     {
         $data = $this->validate(\request(),
             [
-                'user_id' => 'required',
                 'category_id' => 'required',
                 'sub_category_id' => 'required',
-                'sub_category_two_id' => '',
-                'sub_category_three_id' => '',
-                'sub_category_four_id' => '',
-                'sub_category_five_id' => '',
                 'title' => 'required',
                 'price' => 'required',
                 'description' => 'required',
-                'city_id' => 'required',
-                'area_id' => 'required',
-                'latitude' => 'required',
-                'longitude' => 'required',
+                'brand_id' => 'required',
                 'main_image' => 'required'
             ]);
+        $data['user_id'] = auth()->user()->id;
         if($request->main_image != null){
             $image_name = $request->file('main_image')->getRealPath();
             Cloudder::upload($image_name, null);
@@ -73,23 +67,6 @@ class ProductController extends AdminController
             $image_new_name = $image_id.'.'.$image_format;
             $data['main_image'] = $image_new_name;
         }
-        if($request->pull_ad_balance){
-            $ad_user = User::findOrFail($request->user_id);
-            $free_ad_num = $ad_user->free_ads_count;
-            $paid_ads_num = $ad_user->paid_ads_count;
-            $total_my_ad = $free_ad_num + $paid_ads_num;
-            if($total_my_ad > 0){
-                if($ad_user->free_ads_count >= 1){
-                    $ad_user->free_ads_count = $ad_user->free_ads_count - 1 ;
-                }else if($ad_user->paid_ads_count >= 1){
-                    $ad_user->paid_ads_count = $ad_user->paid_ads_count - 1 ;
-                }
-                $ad_user->save();
-            }else{
-                session()->flash('error', trans('messages.not_engh_ad_balance'));
-                return back();
-            }
-        }
         //ad ad here
         //to create ad expire  date
         $settings = Setting::where('id',1)->first();
@@ -97,14 +74,9 @@ class ProductController extends AdminController
         $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d H:i');
         $final_date = Carbon::createFromFormat('Y-m-d H:i', $today);
         $final_expire_date = $final_date->addDays($settings->ad_period);
-        $data['expiry_date'] = $final_expire_date ;
+        // $data['expiry_date'] = $final_expire_date ;
         $data['publication_date'] = $today;
         $data['publish'] = 'Y';
-        if($request->share_location){
-            $data['share_location'] = '1';
-        }else{
-            $data['share_location'] = '0';
-        }
         $product = Product::create($data);
 
         foreach ($request->images as $image){
@@ -118,6 +90,11 @@ class ProductController extends AdminController
             $data_image['product_id'] = $product->id ;
             $data_image['image'] = $image_new_name ;
             ProductImage::create($data_image);
+        }
+        foreach ($request->colors as $color){
+            $color_data['product_id'] = $product->id;
+            $color_data['color_id'] = $color;
+            Product_color::create($color_data);
         }
         session()->flash('success', trans('messages.added_s'));
         return redirect()->route('products.index');      
