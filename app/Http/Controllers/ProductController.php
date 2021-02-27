@@ -137,6 +137,11 @@ class ProductController extends Controller
         $data = Product::with('Product_category')->with('Brand')
                         ->select('id','title','main_image','description','price','publication_date as date','category_id','sub_category_id','brand_id')
                         ->find($request->id);
+
+        $proview = Product::where('id',$request->id)->first();
+        $proview->views = $proview->views +1;
+        $proview->save();
+
         if($user){
             $favorite = Favorite::where('user_id' , $user->id)->where('product_id' , $data->id)->first();
             if($favorite){
