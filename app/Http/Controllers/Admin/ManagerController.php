@@ -15,7 +15,7 @@ class ManagerController extends AdminController{
 
     // get add manager page
     public function AddGet(){
-        $data['permissions'] = Permission::where('order_by_it','!=',0)->orderBy('order_by_it','asc')->get();
+        $data['permissions'] = Permission::where('status','show')->where('order_by_it','!=',0)->orderBy('order_by_it','asc')->get();
         return view('admin.manager_form' , ['data' => $data]);
     }
 

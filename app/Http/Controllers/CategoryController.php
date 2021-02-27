@@ -524,13 +524,13 @@ class CategoryController extends Controller
 
         if($request->lang == 'en'){
             if ($request->sub_category_id != 0) {
-                $data['categories']['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();
-                $data['categories']['category'] = Category::where('id', $request->category_id)->select('id', 'title_en as title')->first();
+                $data['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();
+                $data['category'] = Category::where('id', $request->category_id)->select('id', 'title_en as title')->first();
             }
         }else{
             if ($request->sub_category_id != 0) {
-                $data['categories']['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_ar as title')->get()->toArray();
-                $data['categories']['category'] = Category::where('id', $request->category_id)->select('id', 'title_ar as title')->first();
+                $data['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_ar as title')->get()->toArray();
+                $data['category'] = Category::where('id', $request->category_id)->select('id', 'title_ar as title')->first();
             }
         }
         $products = Product::where('status' , 1)->where('publish','Y')->where('deleted',0);
@@ -553,8 +553,8 @@ class CategoryController extends Controller
                 $products[$i]['favorit'] = false;
             }
         }
-        $data['products'] = $products;
-        $response = APIHelpers::createApiResponse(false , 200 ,  '' , '' , $data , $request->lang );
+        $products = $products;
+        $response = APIHelpers::createApiResponse(false , 200 ,  '' , '' , $products , $request->lang );
         return response()->json($response , 200);
     }
     //nasser code
