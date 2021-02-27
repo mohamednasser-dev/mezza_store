@@ -135,7 +135,7 @@ class ProductController extends Controller
         $lang = $request->lang;
         Session::put('api_lang',$lang);
         $data = Product::with('Product_category')->with('Brand')
-                        ->select('id','title','main_image','description','price','publication_date as date','category_id','brand_id')
+                        ->select('id','title','main_image','description','price','publication_date as date','category_id','sub_category_id','brand_id')
                         ->find($request->id);
         if($user){
             $favorite = Favorite::where('user_id' , $user->id)->where('product_id' , $data->id)->first();
@@ -162,22 +162,10 @@ class ProductController extends Controller
                           ->where('id' , '!=' ,  $data->id)
                           ->where('status' , 1)
                           ->where('publish' , 'Y')
-                          ->where('deleted',0)
+                          ->where('deleted', 0)
                           ->select('id' , 'title' , 'price' , 'type','main_image as image')
                           ->limit(3)
                           ->get();
-        for($i = 0 ; $i < count($related); $i++){
-            if($user){
-                $favorite = Favorite::where('user_id' , $user->id)->where('product_id' , $related[$i]['id'])->first();
-                if($favorite){
-                    $related[$i]['favorite'] = true;
-                }else{
-                    $related[$i]['favorite'] = false;
-                }
-            }else{
-                $related[$i]['favorite'] = false;
-            }
-        }
         $response = APIHelpers::createApiResponse(false , 200 ,  '', '' ,array( 'product'=>$data,
             'related'=>$related), $request->lang );
         return response()->json($response , 200);

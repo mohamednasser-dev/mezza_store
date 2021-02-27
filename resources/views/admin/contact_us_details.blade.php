@@ -23,8 +23,12 @@
                             <td>{{ $data['contact_us']['phone'] }}</td>
                         </tr>
                         <tr>
+                            <td class="label-table" > {{ __('messages.name') }}</td>
+                            <td>{{ $data['contact_us']['name'] }}</td>
+                        </tr>
+                        <tr>
                             <td class="label-table" > {{ __('messages.message') }}</td>
-                            <td>{{ $data['contact_us']['message'] }}</td>
+                            <td>{{ $data['contact_us']['describtion'] }}</td>
                         </tr> 
                         <tr>
                             <td class="label-table" > {{ __('messages.date') }}</td>

@@ -19,9 +19,10 @@
                 <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>    
-                            <th>{{ __('messages.phone') }}</th>
-                            <th>{{ __('messages.date') }}</th>
+                            <th class="text-center">Id</th>    
+                            <th class="text-center">{{ __('messages.name') }}</th>
+                            <th class="text-center">{{ __('messages.phone') }}</th>
+                            <th class="text-center">{{ __('messages.date') }}</th>
                             <th class="text-center">{{ __('messages.details') }}</th>
                             <th class="text-center">{{ __('messages.seen?') }}</th>                            
                             @if(Auth::user()->delete_data) 
@@ -33,9 +34,10 @@
                         <?php $i = 1; ?>
                         @foreach ($data['contact_us'] as $contact_us)
                             <tr class="{{$contact_us->seen == 0 ? 'unread' : '' }}" >
-                                <td><?=$i;?></td>
-                                <td>{{ $contact_us->phone }}</td>
-                                <td>{{ $contact_us->created_at }}</td>
+                                <td class="text-center"><?=$i;?></td>
+                                <td class="text-center">{{ $contact_us->name }}</td>
+                                <td class="text-center">{{ $contact_us->phone }}</td>
+                                <td class="text-center" >{{ $contact_us->created_at }}</td>
                                 <td class="text-center blue-color"><a href="/admin-panel/contact_us/details/{{ $contact_us->id }}" ><i class="far fa-eye"></i></a></td>
                                 <td style="font-weight : bold" class="text-center blue-color" >
                                     {{ $contact_us->seen == 0 ?  __('messages.unseen')  :  __('messages.seen')  }}

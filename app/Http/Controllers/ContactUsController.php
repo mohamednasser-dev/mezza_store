@@ -11,8 +11,9 @@ class ContactUsController extends Controller
 {
     public function SendMessage(Request $request){
             $validator = Validator::make($request->all(), [
+                'name' => 'required',
                 'phone' => 'required',
-                'message' => 'required'
+                'describtion' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -21,8 +22,9 @@ class ContactUsController extends Controller
             }
 
         $contact = new ContactUs;
+        $contact->name = $request->name;
         $contact->phone = $request->phone;
-        $contact->message = $request->message;
+        $contact->describtion = $request->describtion;
         $contact->save();
         $response = APIHelpers::createApiResponse(false , 200 ,  '', '' , $contact, $request->lang );
         return response()->json($response , 200);
