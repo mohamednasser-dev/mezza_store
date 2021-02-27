@@ -89,14 +89,14 @@
                 <label for="">{{ __('messages.main_image') }}</label><br>
                 <div class="row">
                     <div class="col-md-2 product_image">
-                        <img style="width: 100%" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $data->main_image }}"  />
+                        <img style="width: 100px" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $data->main_image }}"  />
                     </div>
                 </div>
                 <label style="margin-top: 20px" for="">{{ __('messages.product_images') }}</label><br>
                 <div class="row">
                     @foreach ($data->images as $image)
                         <div style="position : relative" class="col-md-2 product_image">
-                            <img width="100%" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $image->image }}"  />
+                            <img style="height: 70px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $image->image }}"  />
                         </div>
                     @endforeach
                 </div>

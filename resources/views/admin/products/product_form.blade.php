@@ -77,7 +77,7 @@
                     <h4>{{ __('messages.colors') }}</h4>
                     <div class="form-group" id="area_cont">
                         @php $colors = \App\Color::where('deleted','0')->get(); @endphp
-                        <select class="form-control tagging" name="colors[]" multiple="multiple">
+                        <select required class="form-control tagging" name="colors[]" multiple="multiple">
                             @foreach ($colors as $row)
                                 <option value='{{$row->id}}'>
                                     @if(app()->getLocale() == 'ar') 

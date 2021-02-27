@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Helpers\APIHelpers;
 use App\User;
 use App\City;
+use App\Product_color;
 use App\Area;
 use App\Favorite;
 use App\Product;
@@ -133,13 +134,9 @@ class ProductController extends Controller
         $user = auth()->user();
         $lang = $request->lang;
         Session::put('api_lang',$lang);
-        $data = Product::with('Product_category')->with('Product_user')
-                        ->select('id','title','main_image','description','price','type','publication_date as date','user_id','category_id','city_id','area_id','latitude','longitude','share_location')
+        $data = Product::with('Product_category')->with('Brand')
+                        ->select('id','title','main_image','description','price','publication_date as date','category_id','brand_id')
                         ->find($request->id);
-        if($data->Product_user->image == null){
-            $settings = Setting::where('id',1)->first();
-            $data->Product_user->image = $settings->logo;
-        }
         if($user){
             $favorite = Favorite::where('user_id' , $user->id)->where('product_id' , $data->id)->first();
             if($favorite){
@@ -151,11 +148,17 @@ class ProductController extends Controller
             $data->favorite = false;
         }
         $date = date_create($data->date);
+        $product_colors = Product_color::where('product_id',$request->id)->get();
+        foreach($product_colors as $key => $color){
+            $colors[$key] = $color->Color->title_ar;
+        }
+
+        $data->colors = $colors;
         $user_product = User::find($data->user_id);
         $images = ProductImage::where('product_id' ,  $data->id)->pluck('image')->toArray();
         $images[count($images)] = $data->main_image;
         $data->images = $images;
-        $related = Product::where('category_id' ,  $data->category_id)
+        $related = Product::where('sub_category_id' ,  $data->sub_category_id)
                           ->where('id' , '!=' ,  $data->id)
                           ->where('status' , 1)
                           ->where('publish' , 'Y')

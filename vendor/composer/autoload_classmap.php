@@ -97,6 +97,7 @@ return array(
     'App\\MetaTag' => $baseDir . '/app/MetaTag.php',
     'App\\Mndob' => $baseDir . '/app/Mndob.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
+    'App\\Order' => $baseDir . '/app/Order.php',
     'App\\Permission' => $baseDir . '/app/Permission.php',
     'App\\Plan' => $baseDir . '/app/Plan.php',
     'App\\Plan_details' => $baseDir . '/app/Plan_details.php',

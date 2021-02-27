@@ -199,6 +199,9 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
         Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('add' , 'ProductController@AddGet');
         Route::post('add' , 'ProductController@AddPost')->name("products.store");
+        Route::get('brands', 'ProductController@brands')->name("products.brands");
+        Route::get('colors', 'ProductController@colors')->name("products.colors");
+        Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('edit/{id}' , 'ProductController@edit')->name("products.edit");
         Route::post('edit/{id}' , 'ProductController@EditPost')->name("products.update");
         Route::get('delete/productimage/{id}' , 'ProductController@delete_product_image')->name("productImage.delete");

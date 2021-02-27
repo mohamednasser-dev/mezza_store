@@ -36,6 +36,13 @@ class ProductController extends AdminController
         return view('admin.products.products', ['data' => $data]);
     }
 
+    public function colors()
+    {
+        $data = Color::where('deleted','0')->orderBy('title_ar', 'desc')->get();
+        return view('admin.products.products', compact('data'));
+    }
+
+
     // add get
     public function addGet()
     {

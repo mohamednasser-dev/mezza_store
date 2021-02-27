@@ -562,6 +562,7 @@ class ComposerStaticInit26092f309cc7dc73b32a44b29cb53698
         'App\\MetaTag' => __DIR__ . '/../..' . '/app/MetaTag.php',
         'App\\Mndob' => __DIR__ . '/../..' . '/app/Mndob.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
+        'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
         'App\\Plan' => __DIR__ . '/../..' . '/app/Plan.php',
         'App\\Plan_details' => __DIR__ . '/../..' . '/app/Plan_details.php',

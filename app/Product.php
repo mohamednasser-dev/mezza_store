@@ -36,6 +36,13 @@ class Product extends Model
         return $this->belongsTo('App\Plan', 'plan_id');
     }
     public function Brand() {
+        if( session('api_lang') == 'ar'){
+            return $this->belongsTo('App\Marka', 'brand_id')->select('id','title_ar as title');
+        }else{
+            return $this->belongsTo('App\Marka', 'brand_id')->select('id','title_en as title');
+        } 
+    }
+    public function Web_Brand() {
         return $this->belongsTo('App\Marka', 'brand_id');
     }
     public function City() {
