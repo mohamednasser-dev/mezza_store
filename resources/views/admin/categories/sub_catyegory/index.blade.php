@@ -25,7 +25,6 @@
                             <th class="text-center">Id</th>
                             <th class="text-center">{{ __('messages.image') }}</th>
                             <th class="text-center">{{ __('messages.name') }}</th>
-                            <th class="text-center">{{ __('messages.sub_category_second') }}</th>
                             @if(Auth::user()->update_data)<th class="text-center">{{ __('messages.edit') }}</th>@endif
                             @if(Auth::user()->delete_data)<th class="text-center" >{{ __('messages.delete') }}</th>@endif
                         </tr>
@@ -35,21 +34,8 @@
                         @foreach ($data as $row)
                             <tr >
                                 <td class="text-center"><?=$i;?></td>
-                                <td class="text-center"><img src="https://res.cloudinary.com/carsads/image/upload/w_100,q_100/v1581928924/{{ $row->image }}"  /></td>
+                                <td class="text-center"><img style="height: 100px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $row->image }}"  /></td>
                                 <td class="text-center blue-color">{{ app()->getLocale() == 'en' ? $row->title_en : $row->title_ar }}</td>
-                                <td class="text-center blue-color">
-                                    <a href="{{route('sub_two_cat.show',$row->id)}}">
-                                        <div class="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                 stroke-linejoin="round" class="feather feather-layers">
-                                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                                <polyline points="2 17 12 22 22 17"></polyline>
-                                                <polyline points="2 12 12 17 22 12"></polyline>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </td>
                                 @if(Auth::user()->update_data)
                                     <td class="text-center blue-color" ><a href="{{ route( 'sub_cat.edit', $row->id ) }}" ><i class="far fa-edit"></i></a></td>
                                 @endif

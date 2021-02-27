@@ -37,7 +37,7 @@
                             @foreach ($data['products'] as $product)
                                 <tr >
                                     <td class="text-center"><?=$i;?></td>
-                                    <td class="text-center"><img style="height: 50px;" src="https://res.cloudinary.com/carsads/image/upload/w_100,q_100/v1581928924/{{ $product->main_image }}"  /></td>
+                                    <td class="text-center"><img style="height: 50px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $product->main_image }}"  /></td>
                                     <td class="text-center">{{ $product->title }}</td>
                                     <td class="text-center">
                                         @if( $product->publication_date != null)

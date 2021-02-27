@@ -7,7 +7,7 @@
         <nav id="sidebar">
             <div class="shadow-bottom"></div>
             <ul class="list-unstyled menu-categories" id="accordionExample">
-                @if(in_array(1 , Auth::user()->custom['admin_permission']))
+                <!-- @if(in_array(1 , Auth::user()->custom['admin_permission']))
                     <li class="menu users">
                         <a href="#users" data-active="true" data-toggle="collapse" aria-expanded="true"
                            class="dropdown-toggle first-link">
@@ -49,7 +49,7 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+                @endif -->
 
                 @if(in_array(13 , Auth::user()->custom['admin_permission']))
                     <li class="menu products">
@@ -291,7 +291,7 @@
                     </li>
                 @endif
 
-                @if(in_array(10 , Auth::user()->custom['admin_permission']))
+                <!-- @if(in_array(10 , Auth::user()->custom['admin_permission']))
                     <li class="menu databasebackup">
                         <a href="/admin-panel/databasebackup" class="dropdown-toggle first-link">
                             <div class="">
@@ -306,7 +306,7 @@
                             </div>
                         </a>
                     </li>
-                @endif
+                @endif -->
             </ul>
             <!-- <div class="shadow-bottom"></div> -->
 

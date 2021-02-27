@@ -44,10 +44,9 @@ class CategoryController extends Controller
     // get ad subcategories
     public function getAdSubCategories(Request $request) {
         if($request->lang == 'en'){
-            $data['sub_categories'] = SubCategory::where('deleted' , 0)->where('category_id' , $request->category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();
-
+            $data = SubCategory::where('deleted' , 0)->where('category_id' , $request->category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();
         }else{
-            $data['sub_categories'] = SubCategory::where('deleted' , 0)->where('category_id' , $request->category_id)->select('id' , 'image' , 'title_ar as title')->get()->toArray();
+            $data = SubCategory::where('deleted' , 0)->where('category_id' , $request->category_id)->select('id' , 'image' , 'title_ar as title')->get()->toArray();
         }
         $response = APIHelpers::createApiResponse(false , 200 , '' , '' , $data , $request->lang);
         return response()->json($response , 200);

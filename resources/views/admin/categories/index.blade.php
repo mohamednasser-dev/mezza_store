@@ -36,7 +36,7 @@
                         @foreach ($data['categories'] as $category)
                             <tr>
                                 <td><?=$i;?></td>
-                                <td class="text-center"><img src="https://res.cloudinary.com/carsads/image/upload/w_100,q_100/v1581928924/{{ $category->image }}"  /></td>
+                                <td class="text-center"><img style="height: 100px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $category->image }}"  /></td>
                                 <td class="text-center">{{ app()->getLocale() == 'en' ? $category->title_en : $category->title_ar }}</td>
                                 <td class="text-center blue-color">
                                     <a href="{{route('sub_cat.show',$category->id)}}">
