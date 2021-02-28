@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Helpers\APIHelpers;
 use App\User;
 use App\City;
+use App\Order;
+use App\OrderDetail;
 use App\Product_color;
 use App\Area;
 use App\Favorite;
@@ -33,7 +35,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api' , ['except' => ['my_remain_balance','cities','basic_info','third_step_excute_pay','save_third_step_with_money','update_ad','select_ad_data','delete_my_ad','save_third_step','save_second_step','save_first_step','getdetails' , 'getoffers' , 'getproducts'  , 'getsearch', 'getFeatureOffers']]);
+        $this->middleware('auth:api' , ['except' => ['make_order','my_remain_balance','cities','basic_info','third_step_excute_pay','save_third_step_with_money','update_ad','select_ad_data','delete_my_ad','save_third_step','save_second_step','save_first_step','getdetails' , 'getoffers' , 'getproducts'  , 'getsearch', 'getFeatureOffers']]);
     }
 
     public function create(Request $request){
@@ -837,14 +839,49 @@ class ProductController extends Controller
             unset($input['images']);
             $updated = Product::where('id',$id)->update($input);
             if($updated == 1){
-                $final_data['status'] = true ;
-                $response = APIHelpers::createApiResponse(false , 200 ,  'updated successfuly','تم التعديل بنجاح' , $final_data, $request->lang);
+                $response = APIHelpers::createApiResponse(false , 200 ,  'order sent successfully','تم ارسال الطلب بنجاح' , null, $request->lang);
                 return response()->json($response , 200);
             }else{
                 $data_f['status'] = false;
-                $response = APIHelpers::createApiResponse(true, 406, 'not updated', 'لم يتم التعديل', $data_f, $request->lang);
+                $response = APIHelpers::createApiResponse(true, 406, 'not ordered , no product in cart', 'لم يتم ارسال الطلب لعدم وجود منتجات ', $data_f, $request->lang);
                 return response()->json($response, 406);
             }
+        }
+    }
+    public function make_order(Request $request){
+        $input = $request->all();
+        $validator = Validator::make($input , [
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'notes' => '',
+        ]);
+        if($validator->fails()) {
+            $response = APIHelpers::createApiResponse(true , 406 , $validator->messages()->first() ,$validator->messages()->first(), null , $request->lang);
+            return response()->json($response , 406);
+        }else{
+
+            $order = Order::create($input);
+            
+            if(count($request->data) != 0){
+                // dd($request->data[1]['quantity']);
+                foreach($request->data as $row){
+
+                    
+                    $order_data['product_id'] = $row['product_id'];
+                    $order_data['order_id'] = $order->id;
+                    $order_data['quantity'] = $row['quantity'];
+                    $order_data['price'] = $row['price'];
+                    $order_data['total'] = $row['total'];
+                    OrderDetail::create($order_data);
+                }
+                $response = APIHelpers::createApiResponse(false , 200 ,  'order sent successfully','تم ارسال الطلب بنجاح' , null, $request->lang);
+                return response()->json($response , 200);
+            }else{
+                $response = APIHelpers::createApiResponse(true, 406, 'not ordered , no product in cart', 'لم يتم ارسال الطلب لعدم وجود منتجات ',null, $request->lang);
+                return response()->json($response, 406);
+            }
+
         }
     }
 }

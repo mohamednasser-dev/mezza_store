@@ -199,8 +199,17 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
         Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('add' , 'ProductController@AddGet');
         Route::post('add' , 'ProductController@AddPost')->name("products.store");
-        Route::get('brands', 'ProductController@brands')->name("products.brands");
+        
         Route::get('colors', 'ProductController@colors')->name("products.colors");
+        Route::get('colors/delete/{id}', 'ProductController@color_delete')->name("color.delete");
+        Route::post('colors/update', 'ProductController@color_update')->name("color.update");
+        Route::post('colors/store', 'ProductController@color_store')->name("color.store");
+      
+        Route::get('brands', 'ProductController@brands')->name("brands.brands");
+        Route::get('brands/delete/{id}', 'ProductController@brand_delete')->name("brands.delete");
+        Route::post('brands/update', 'ProductController@brand_update')->name("brands.update");
+        Route::post('brands/store', 'ProductController@brand_store')->name("brands.store");
+        
         Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('edit/{id}' , 'ProductController@edit')->name("products.edit");
         Route::post('edit/{id}' , 'ProductController@EditPost')->name("products.update");
@@ -284,9 +293,9 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
         Route::get('details/delete/{detail_id}' , 'PlanController@delete_details')->name("plans.details.delete");
     });
 
-    Route::resource('brands', 'BrandController');
-    Route::get('brands/update/{id}' , 'BrandController@update')->name("brands.update.new");
-    Route::get('brands/delete/{id}' , 'BrandController@destroy')->name("delete.brands");
+    // Route::resource('brands', 'BrandController');
+    // Route::get('brands/update/{id}' , 'BrandController@update')->name("brands.update.new");
+    // Route::get('brands/delete/{id}' , 'BrandController@destroy')->name("delete.brands");
 
     Route::resource('brand_types', 'BrandTypesController');
     Route::get('brand_types/create/{id}' , 'BrandTypesController@create')->name("brand_types.create.new");
@@ -297,6 +306,10 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
     Route::get('models/create/{id}' , 'BrandTypeModelsController@create')->name("models.create.new");
     Route::get('model/update/{id}' , 'BrandTypeModelsController@update')->name("model.update.new");
     Route::get('models/delete/{id}' , 'BrandTypeModelsController@destroy')->name("models.delete");
+
+    Route::resource('orders', 'OrdersController');
+    Route::get('orders/status/arrived/{id}', 'OrdersController@status_arrived')->name('orders.status.arrived');
+    Route::get('orders/status/reject/{id}', 'OrdersController@status_reject')->name('orders.status.reject');
 
 });
 

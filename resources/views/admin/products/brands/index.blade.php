@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title' , __('messages.colors'))
+@section('title' , __('messages.brands'))
 
 @section('content')
     <div id="tableSimple" class="col-lg-12 col-12 layout-spacing">
@@ -8,13 +8,13 @@
             <div class="widget-header">
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <h4>{{ __('messages.colors')}}</h4>
+                    <h4>{{ __('messages.brands')}}</h4>
                 </div>
             </div>
             @if(Auth::user()->add_data)
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#creat_model">{{ __('messages.add_new_color') }}</a>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#creat_model">{{ __('messages.add_new_brand') }}</a>
                     </div>
                 </div>
             @endif
@@ -41,11 +41,11 @@
                                     <td class="text-center"><?=$i;?></td>
                                     <td class="text-center">{{ $row->title_ar }}</td>
                                     @if(Auth::user()->update_data)
-                                        <td class="text-center blue-color" ><a id="edit" data-color-id="{{$row->id}}" data-color-title_ar="{{$row->title_ar}}" data-toggle="modal" data-target="#zoomupModal" ><i class="far fa-edit"></i></a></td>
+                                        <td class="text-center blue-color" ><a id="edit" data-brand-id="{{$row->id}}" data-brand-title_ar="{{$row->title_ar}}" data-toggle="modal" data-target="#zoomupModal" ><i class="far fa-edit"></i></a></td>
                                     @endif
                                     @if(Auth::user()->delete_data)
                                     <!-- <td class="text-center blue-color" ><a href="{{ route('color.delete', $row->id) }}" ><i class="far fa-trash-al"></i></a></td -->
-                                        <td class="text-center blue-color" ><a onclick="return confirm('{{ __('messages.are_you_sure') }}');" href="{{ route('color.delete', $row->id) }}" ><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="text-center blue-color" ><a onclick="return confirm('{{ __('messages.are_you_sure') }}');" href="{{ route('brands.delete', $row->id) }}" ><i class="far fa-trash-alt"></i></a></td>
                                     @endif
                                     <?php $i++; ?>
                                 </tr>
@@ -72,12 +72,12 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="{{route('color.update')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('brands.update')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <input required type="hidden" name="id" id="txt_id">
                             <div class="form-group mb-4">
-                                <label for="plan_price">{{ __('messages.color_name') }}</label>
+                                <label for="plan_price">{{ __('messages.brand_name') }}</label>
                                 <input required type="text" id="txt_title_ar" min="0" name="title_ar" class="form-control">
                             </div>
                         </div>
@@ -103,11 +103,11 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="{{route('color.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('brands.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group mb-4">
-                                <label for="plan_price">{{ __('messages.color_name') }}</label>
+                                <label for="plan_price">{{ __('messages.brand_name') }}</label>
                                 <input required type="text" id="txt_title_ar" min="0" name="title_ar" class="form-control">
                             </div>
                         </div>
@@ -123,8 +123,8 @@
 <script>
         var id;
         $(document).on('click', '#edit', function () {
-            id = $(this).data('color-id');
-            title_ar = $(this).data('color-title_ar');
+            id = $(this).data('brand-id');
+            title_ar = $(this).data('brand-title_ar');
 
             $('#txt_id').val(id);
             $('#txt_title_ar').val(title_ar);

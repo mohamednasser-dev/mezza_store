@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\categories\OptionsValuesController;
 use App\Plan;
 use App\Area;
+use App\Marka;
 use App\Plan_details;
 use App\Product_color;
+use App\Color;
 use App\Product_feature;
 use App\SubCategory;
 use App\SubFiveCategory;
@@ -35,13 +37,6 @@ class ProductController extends AdminController
         $data['products'] = Product::where('deleted',0)->orderBy('id', 'desc')->get();
         return view('admin.products.products', ['data' => $data]);
     }
-
-    public function colors()
-    {
-        $data = Color::where('deleted','0')->orderBy('title_ar', 'desc')->get();
-        return view('admin.products.products', compact('data'));
-    }
-
 
     // add get
     public function addGet()
@@ -257,5 +252,62 @@ class ProductController extends AdminController
                     ->get();
         return view('admin.products.parts.plans.plans',compact('data'));
     }
+
+    public function colors()
+    {
+        $data = Color::where('deleted','0')->orderBy('created_at', 'desc')->get();
+        return view('admin.products.colors.index', compact('data'));
+    }
+    public function color_delete($id)
+    {
+        $input['deleted'] = '1';
+        Color::where('id',$id)->update($input);
+        session()->flash('success', trans('messages.deleted_s'));
+        return back();
+    }
+
+    public function color_store(Request $request)
+    {
+        $input['title_ar'] = $request->title_ar;
+        Color::create($input);
+        session()->flash('success', trans('messages.added_s'));
+        return back();
+    }
+    public function color_update(Request $request)
+    {
+        $input['title_ar'] = $request->title_ar;
+        Color::where('id',$request->id)->update($input);
+        session()->flash('success', trans('messages.updated_s'));
+        return back();
+    }
+
+    public function brands()
+    {
+        $data = Marka::where('deleted','0')->orderBy('created_at', 'desc')->get();
+        return view('admin.products.brands.index', compact('data'));
+    }
+    public function brand_delete($id)
+    {
+        $input['deleted'] = '1';
+        Marka::where('id',$id)->update($input);
+        session()->flash('success', trans('messages.deleted_s'));
+        return back();
+    }
+
+    public function brand_store(Request $request)
+    {
+        $input['title_ar'] = $request->title_ar;
+        Marka::create($input);
+        session()->flash('success', trans('messages.added_s'));
+        return back();
+    }
+    public function brand_update(Request $request)
+    {
+        $input['title_ar'] = $request->title_ar;
+        Marka::where('id',$request->id)->update($input);
+        session()->flash('success', trans('messages.updated_s'));
+        return back();
+    }
+
 
 }

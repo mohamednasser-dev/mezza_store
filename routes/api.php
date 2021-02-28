@@ -208,6 +208,7 @@ use Illuminate\Http\Request;
 
     //visitor
     Route::post('/visitor/create/{lang}/{v}' , 'VisitorController@create')->middleware('checkguest');
+    Route::post('/make_order/{lang}/{v}' , 'ProductController@make_order')->middleware('checkguest');
 
 
 

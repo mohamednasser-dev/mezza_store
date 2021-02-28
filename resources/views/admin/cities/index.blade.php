@@ -12,11 +12,10 @@
                     </div>
                 </div>
                 @if(Auth::user()->add_data)
-                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <a class="btn btn-primary" href="{{route('cities.create')}}">{{ __('messages.add') }}</a>
-                </div>
-            @endif
-
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <a class="btn btn-primary" href="{{route('cities.create')}}">{{ __('messages.add') }}</a>
+                    </div>
+                @endif
             </div>
             <div class="widget-content widget-content-area">
                 <div clSass="table-responsive">

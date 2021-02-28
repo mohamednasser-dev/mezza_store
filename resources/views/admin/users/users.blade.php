@@ -151,15 +151,15 @@
                 </div>
             </div>
         </div>
-        @endsection
-        @section('scripts')
-            <script>
-                $(document).ready(function () {
-                    $(document).on('click', '#btn_send', function () {
-                        user_id = $(this).data('user');
-                        $("#txt_user_id").val(user_id);
-                    });
-                });
-            </script>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#btn_send', function () {
+                user_id = $(this).data('user');
+                $("#txt_user_id").val(user_id);
+            });
+        });
+    </script>
 @endsection
 

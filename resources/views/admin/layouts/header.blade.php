@@ -42,14 +42,14 @@
         </ul>
         <ul class="navbar-item flex-row ml-md-auto">
             <li class="nav-item dropdown language-dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
+                <!-- <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if(App::isLocale('en'))
                         <img src="/admin/assets/img/ca.png" class="flag-width" alt="flag">
                     @else
                         <img src="/admin/assets/img/ar.png" class="flag-width" alt="flag">
                     @endif
-                </a>
+                </a> -->
                 <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
                     <a class="dropdown-item d-flex" href="/setlocale/en"><img src="/admin/assets/img/ca.png" class="flag-width" alt="flag">
                         <span class="align-self-center">&nbsp;{{ __('messages.english') }}</span></a>
