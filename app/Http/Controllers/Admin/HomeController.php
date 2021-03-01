@@ -8,6 +8,7 @@ use App\User;
 use App\Product;
 use App\Plan;
 use App\Ad;
+use App\Order;
 
 class HomeController extends AdminController{
 
@@ -17,6 +18,7 @@ class HomeController extends AdminController{
         $data['products'] = Product::where('deleted',0)->count();
         $data['plans'] = Plan::count();
         $data['ads'] = Ad::count();
+        $data['Order'] = Order::count();
         $data['contact_us'] = ContactUs::count();
         return view('admin.home' , ['data' => $data]);   
     }

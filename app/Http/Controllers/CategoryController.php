@@ -17,6 +17,7 @@ use App\SubTwoCategory;
 use App\SubThreeCategory;
 use App\ProductImage;
 use App\Product;
+use App\Color;
 use App\Ad;
 use App\Favorite;
 use App\SubFourCategory;
@@ -540,7 +541,7 @@ class CategoryController extends Controller
         if($request->sub_category_id != 0){
             $products = $products->where('sub_category_id', $request->sub_category_id);
         }
-        $products = $products->select('id' , 'title' , 'price' ,'main_image as image' , 'pin')->orderBy('created_at','desc')->simplePaginate(12);
+        $products = $products->select('id' , 'title' , 'price' ,'main_image as image' , 'pin')->orderBy('created_at','desc')->get();
          for($i = 0; $i < count($products); $i++){
             if(auth()->user() != null){
                 $fav_it = Favorite::where('user_id',auth()->user()->id)->where('product_id',$products[$i]['id'])->first();

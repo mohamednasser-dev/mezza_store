@@ -38,6 +38,7 @@
             'status_changed_s' => "تم تغيير الحالة بنجاح",
             'rejected' => "مرفوض",
             'status_order' => "حالة الطلب",
+            'orders_count' => "عدد الطلبات",
             
 
 

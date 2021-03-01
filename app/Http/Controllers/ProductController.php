@@ -23,6 +23,7 @@ use App\Order;
 use App\OrderDetail;
 use App\Product_color;
 use App\Area;
+use App\Color;
 use App\Favorite;
 use App\Product;
 use App\ProductImage;
@@ -137,9 +138,11 @@ class ProductController extends Controller
         $lang = $request->lang;
         Session::put('api_lang',$lang);
         $data = Product::with('Product_category')->with('Brand')
-                        ->select('id','title','main_image','description','price','publication_date as date','category_id','sub_category_id','brand_id')
+                        ->select('id','title','main_image','description','price','color_id as color','publication_date as date','category_id','sub_category_id','brand_id')
                         ->find($request->id);
 
+        $color =  Color::where('id',$data->color)->first();
+        $data->color = $color->title_ar;
         $proview = Product::where('id',$request->id)->first();
         $proview->views = $proview->views +1;
         $proview->save();
@@ -155,12 +158,12 @@ class ProductController extends Controller
             $data->favorite = false;
         }
         $date = date_create($data->date);
-        $product_colors = Product_color::where('product_id',$request->id)->get();
-        foreach($product_colors as $key => $color){
-            $colors[$key] = $color->Color->title_ar;
-        }
+        // $product_colors = Product_color::where('product_id',$request->id)->get();
+        // foreach($product_colors as $key => $color){
+        //     $colors[$key] = $color->Color->title_ar;
+        // }
 
-        $data->colors = $colors;
+        // $data->colors = $colors;
         $user_product = User::find($data->user_id);
         $images = ProductImage::where('product_id' ,  $data->id)->pluck('image')->toArray();
         $images[count($images)] = $data->main_image;
