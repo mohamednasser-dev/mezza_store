@@ -400,7 +400,7 @@ class ProductController extends Controller
                     return response()->json($response , 406);
                 }
 
-           
+
         }
     }
 
@@ -549,9 +549,9 @@ class ProductController extends Controller
             $response = APIHelpers::createApiResponse(true , 406 , 'يجب اختيار خطة صحيحة' ,'plan not found ', null , $request->lang);
             return response()->json($response , 406);
         }
-        
+
         $products = Product::where('id',$request->ad_id)->first();
-        
+
         if($products == null){
             $response = APIHelpers::createApiResponse(true , 406 , 'يجب اختيار اعلان صحيحة' ,'Ad not found ', null , $request->lang);
             return response()->json($response , 406);
@@ -738,7 +738,7 @@ class ProductController extends Controller
         $response = APIHelpers::createApiResponse(false , 200 , 'data shown' , 'تم أظهار البيانات' , $data , $request->lang);
         return response()->json($response , 200);
     }
-    
+
      public function basic_info(Request $request) {
         $user = auth()->user();
         $data['phone'] = $user->phone ;
@@ -746,9 +746,9 @@ class ProductController extends Controller
         $response = APIHelpers::createApiResponse(false , 200 , 'data shown' , 'تم أظهار البيانات' , $data , $request->lang);
         return response()->json($response , 200);
     }
-    
+
     public function cities(Request $request){
-      
+
         Session::put('api_lang',$request->lang);
         if ($request->lang == 'en') {
             $cities = City::with('Areas')
@@ -863,22 +863,20 @@ class ProductController extends Controller
             $response = APIHelpers::createApiResponse(true , 406 , $validator->messages()->first() ,$validator->messages()->first(), null , $request->lang);
             return response()->json($response , 406);
         }else{
-
             $order = Order::create($input);
-            
             if(count($request->data) != 0){
                 // dd($request->data[1]['quantity']);
                 foreach($request->data as $row){
-
-                    
-                    $order_data['product_id'] = $row['product_id'];
+                    $order_data['product_id'] = $row['id'];
                     $order_data['order_id'] = $order->id;
                     $order_data['quantity'] = $row['quantity'];
                     $order_data['price'] = $row['price'];
-                    $order_data['total'] = $row['total'];
+                    $total = $row['quantity'] * $row['price'] ;
+                    $order_data['total'] = $total ;
                     OrderDetail::create($order_data);
                 }
-                $response = APIHelpers::createApiResponse(false , 200 ,  'order sent successfully','تم ارسال الطلب بنجاح' , null, $request->lang);
+
+                $response = APIHelpers::createCodeStatusResponse(false , 200);
                 return response()->json($response , 200);
             }else{
                 $response = APIHelpers::createApiResponse(true, 406, 'not ordered , no product in cart', 'لم يتم ارسال الطلب لعدم وجود منتجات ',null, $request->lang);

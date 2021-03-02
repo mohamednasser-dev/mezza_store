@@ -27,6 +27,18 @@
           return $result;
       }
 
+        public static function createCodeStatusResponse($is_error , $code){
+            $result = [];
+            if($is_error){
+                $result['success'] = false;
+                $result['code'] = $code;
+            }else{
+                $result['success'] = true;
+                $result['code'] = $code;
+            }
+            return $result;
+        }
+
         // calculate the distance
        public static function distance($lat1, $lon1, $lat2, $lon2, $unit) {
             if (($lat1 == $lat2) && ($lon1 == $lon2)) {
@@ -39,7 +51,7 @@
               $dist = rad2deg($dist);
               $miles = $dist * 60 * 1.1515;
               $unit = strtoupper($unit);
-          
+
               if ($unit == "K") {
                 return ($miles * 1.609344);
               } else if ($unit == "N") {
@@ -52,7 +64,7 @@
 
           // send fcm notification
           public static function send_notification($title , $body , $image , $data , $token){
-            
+
             $message= $body;
             $title= $title;
             $image = $image;
@@ -64,8 +76,8 @@
                 'Content-Type:application/json'
             );
 
-            $fields =array('registration_ids'=>$token,  
-                            'notification'=>array('title'=>$title,'body'=>$message , 'image'=>$image));  
+            $fields =array('registration_ids'=>$token,
+                            'notification'=>array('title'=>$title,'body'=>$message , 'image'=>$image));
 
             $payload =json_encode($fields);
             $curl_session =curl_init();
@@ -83,7 +95,7 @@
 
 
 
-          
+
 
 
     }

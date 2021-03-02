@@ -127,7 +127,7 @@ class ProductController extends AdminController
 
             $image = $prod->main_image;
             $publicId = substr($image, 0 ,strrpos($image, "."));
-             Cloudder::delete($publicId);
+            Cloudder::delete($publicId);
 
             $image_name = $request->file('main_image')->getRealPath();
             Cloudder::upload($image_name, null);
