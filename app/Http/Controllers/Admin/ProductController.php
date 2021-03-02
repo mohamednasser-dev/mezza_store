@@ -114,22 +114,21 @@ class ProductController extends AdminController
         $prod = Product::find($id);
         $data = $this->validate(\request(),
             [
-                'user_id' => 'required',
                 'category_id' => 'required',
                 'sub_category_id' => 'required',
-                'sub_category_two_id' => '',
-                'sub_category_three_id' => '',
-                'sub_category_four_id' => '',
-                'sub_category_five_id' => '',
                 'title' => 'required',
                 'price' => 'required',
                 'description' => 'required',
-                'city_id' => 'required',
-                'area_id' => 'required',
-                'latitude' => 'required',
-                'longitude' => 'required',
+                'brand_id' => 'required',
+                'color_id' => 'required',
+                'main_image' => 'required'
             ]);
         if($request->main_image != null){
+
+            $image = $prod->main_image;
+            $publicId = substr($image, 0 ,strrpos($image, "."));
+             Cloudder::delete($publicId);
+
             $image_name = $request->file('main_image')->getRealPath();
             Cloudder::upload($image_name, null);
             $imagereturned = Cloudder::getResult();
@@ -137,12 +136,6 @@ class ProductController extends AdminController
             $image_format = $imagereturned['format'];
             $image_new_name = $image_id.'.'.$image_format;
             $data['main_image'] = $image_new_name;
-        }
-
-        if($request->share_location){
-            $data['share_location'] = '1';
-        }else{
-            $data['share_location'] = '0';
         }
         Product::where('id',$id)->update($data);
         if($request->images != null) {
@@ -164,6 +157,10 @@ class ProductController extends AdminController
     // delete product image
     public function delete_product_image($id)
     {
+        $image_data = ProductImage::where('id',$id)->first();
+        $image = $image_data->image;
+        $publicId = substr($image, 0 ,strrpos($image, "."));
+        Cloudder::delete($publicId);
         ProductImage::where('id',$id)->delete();
         return redirect()->back();
     }

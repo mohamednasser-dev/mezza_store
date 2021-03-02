@@ -132,26 +132,46 @@
         <select required class="form-control" name="brand_id" id="cmb_city_id">
             <option selected>{{ __('messages.choose_brand') }}</option>
             @foreach ($brands as $row)
-                @if( app()->getLocale() == 'en')
-                    <option value="{{ $row->id }}">{{ $row->title_en }}</option>
+                @if($row->id == $data->brand_id)
+                    <option value='{{$row->id}}' selected>
+                        @if(app()->getLocale() == 'ar')
+                            {{$row->title_ar}}
+                        @else
+                            {{$row->title_en}}
+                        @endif
+                    </option>
                 @else
-                    <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
+                    @if( app()->getLocale() == 'en')
+                        <option value="{{ $row->id }}">{{ $row->title_en }}</option>
+                    @else
+                        <option value="{{ $row->id }}">{{ $row->title_ar }}</option>
+                    @endif
                 @endif
             @endforeach
         </select>
     </div>
-    <h4>{{ __('messages.colors') }}</h4>
+    <h4>{{ __('messages.color') }}</h4>
     <div class="form-group" id="area_cont">
         @php $colors = \App\Color::where('deleted','0')->get(); @endphp
-        <select class="form-control tagging" name="colors[]" multiple="multiple">
+        <select class="form-control tagging" name="color_id">
             @foreach ($colors as $row)
-                <option value='{{$row->id}}'>
-                    @if(app()->getLocale() == 'ar') 
-                        {{$row->title_ar}}
-                    @else
-                        {{$row->title_en}}
-                    @endif
-                </option>
+                @if($row->id == $data->color_id)
+                    <option value='{{$row->id}}' selected>
+                        @if(app()->getLocale() == 'ar')
+                            {{$row->title_ar}}
+                        @else
+                            {{$row->title_en}}
+                        @endif
+                    </option>
+                @else
+                    <option value='{{$row->id}}'>
+                        @if(app()->getLocale() == 'ar')
+                            {{$row->title_ar}}
+                        @else
+                            {{$row->title_en}}
+                        @endif
+                    </option>
+                @endif
             @endforeach
         </select>
     </div>
