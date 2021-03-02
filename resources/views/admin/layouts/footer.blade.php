@@ -48,7 +48,7 @@
 <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
-<script src="assets/js/scrollspyNav.js"></script>
+<script src="/admin/assets/js/scrollspyNav.js"></script>
     <script src="/admin/plugins/select2/select2.min.js"></script>
     <script src="/admin/plugins/select2/custom-select2.js"></script>
 

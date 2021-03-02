@@ -26,10 +26,6 @@
                         <tr>
                             <th>Id</th>
                             <th class="text-center">{{ __('messages.image') }}</th>
-                            <th class="text-center">{{ __('messages.details') }}</th>
-                            @if(Auth::user()->update_data)
-                                <th class="text-center">{{ __('messages.edit') }}</th>
-                            @endif
                             @if(Auth::user()->delete_data)
                                 <th class="text-center" >{{ __('messages.delete') }}</th>
                             @endif
@@ -41,11 +37,6 @@
                             <tr>
                                 <td><?=$i;?></td>
                                 <td class="text-center"><img style="height: 100px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $ad->image }}"  /></td>
-
-                                <td class="text-center blue-color"><a href="/admin-panel/ads/details/{{ $ad->id }}" ><i class="far fa-eye"></i></a></td>
-                                @if(Auth::user()->update_data)
-                                    <td class="text-center blue-color" ><a href="/admin-panel/ads/edit/{{ $ad->id }}" ><i class="far fa-edit"></i></a></td>
-                                @endif
                                 @if(Auth::user()->delete_data)
                                     <td class="text-center blue-color" ><a onclick="return confirm('Are you sure you want to delete this item?');" href="/admin-panel/ads/delete/{{ $ad->id }}" ><i class="far fa-trash-alt"></i></a></td>
                                 @endif

@@ -57,6 +57,7 @@ class ProductController extends AdminController
                 'price' => 'required',
                 'description' => 'required',
                 'brand_id' => 'required',
+                'color_id' => 'required',
                 'main_image' => 'required'
             ]);
         $data['user_id'] = auth()->user()->id;
@@ -93,13 +94,13 @@ class ProductController extends AdminController
             $data_image['image'] = $image_new_name ;
             ProductImage::create($data_image);
         }
-        foreach ($request->colors as $color){
-            $color_data['product_id'] = $product->id;
-            $color_data['color_id'] = $color;
-            Product_color::create($color_data);
-        }
+//        foreach ($request->colors as $color){
+//            $color_data['product_id'] = $product->id;
+//            $color_data['color_id'] = $color;
+//            Product_color::create($color_data);
+//        }
         session()->flash('success', trans('messages.added_s'));
-        return redirect()->route('products.index');      
+        return redirect()->route('products.index');
     }
     // edit get
     public function edit($id)

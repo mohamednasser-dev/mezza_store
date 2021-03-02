@@ -101,6 +101,7 @@ use Illuminate\Http\Request;
     Route::get('/sub_categories/level5/{sub_category_id}/{lang}/{v}' , 'CategoryController@get_sub_categories_level5')->middleware('checkguest');
     // products last level
     Route::get('/products/last-level/{sub_category_id}/{lang}/{v}' , 'CategoryController@getproducts')->middleware('checkguest');
+    Route::get('/products/sort-last-level/{sub_category_id}/{lang}/{v}' , 'CategoryController@sort_products')->middleware('checkguest');
 
     // get home data
     Route::get('/home/{lang}/{v}' , 'HomeController@gethome')->middleware('checkguest');
@@ -161,12 +162,12 @@ use Illuminate\Http\Request;
     Route::get('/ad/my_remain_balance/{lang}/{v}' , 'ProductController@my_remain_balance');
     Route::get('/ad/cities/{lang}/{v}' , 'ProductController@cities');
     Route::get('/ad/select_all_plans/{cat_id}/{lang}/{v}' , 'PlanController@select_all_plans');
-    
+
     Route::get('/ad/save_third_step/{ad_id}/{plan_id}/{lang}/{v}' , 'ProductController@save_third_step');
-    
+
     Route::get('/ad/save_third_step_with_money/{ad_id}/{plan_id}/{lang}/{v}' , 'ProductController@save_third_step_with_money');
     Route::get('/ad/save_third_step/excute_pay' , 'ProductController@third_step_excute_pay');
-   
+
 
     Route::get('/ad/select_ended_ads/{lang}/{v}' , 'ProductController@select_ended_ads');
     Route::get('/ad/select_current_ads/{lang}/{v}' , 'ProductController@select_current_ads');

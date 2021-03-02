@@ -74,13 +74,13 @@
                             @endforeach
                         </select>
                     </div>
-                    <h4>{{ __('messages.colors') }}</h4>
+                    <h4>{{ __('messages.color') }}</h4>
                     <div class="form-group" id="area_cont">
                         @php $colors = \App\Color::where('deleted','0')->get(); @endphp
-                        <select required class="form-control tagging" name="colors[]" multiple="multiple">
+                        <select required class="form-control tagging" name="color_id">
                             @foreach ($colors as $row)
                                 <option value='{{$row->id}}'>
-                                    @if(app()->getLocale() == 'ar') 
+                                    @if(app()->getLocale() == 'ar')
                                         {{$row->title_ar}}
                                     @else
                                         {{$row->title_en}}

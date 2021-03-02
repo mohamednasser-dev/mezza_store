@@ -27,12 +27,9 @@ class AdController extends AdminController{
         $ad = new Ad();
         $ad->image = $image_new_name;
         $ad->content = $request->content;
-        // $ad->place = $request->place;
-        if ($request->input('type') == 1) {
-            $ad->type = "link";
-        }else {
-            $ad->type = "id";
-        }
+
+        $ad->type = "id";
+        $ad->content = $request->product_id ;
         $ad->save();
         session()->flash('success', trans('messages.added_s'));
         return redirect('admin-panel/ads/show');

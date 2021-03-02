@@ -39,7 +39,8 @@
             'rejected' => "مرفوض",
             'status_order' => "حالة الطلب",
             'orders_count' => "عدد الطلبات",
-            
+            'color' => "اللون",
+
 
 
 

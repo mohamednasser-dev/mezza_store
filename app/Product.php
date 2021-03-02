@@ -18,7 +18,7 @@ class Product extends Model
         }else{
             return $this->belongsTo('App\Category', 'category_id')->select('id','title_en as title');
         }
-        
+
     }
     public function category() {
         return $this->belongsTo('App\Category', 'category_id');
@@ -40,7 +40,11 @@ class Product extends Model
             return $this->belongsTo('App\Marka', 'brand_id')->select('id','title_ar as title');
         }else{
             return $this->belongsTo('App\Marka', 'brand_id')->select('id','title_en as title');
-        } 
+        }
+    }
+    public function Brand_web() {
+        return $this->belongsTo('App\Marka', 'brand_id');
+
     }
     public function Web_Brand() {
         return $this->belongsTo('App\Marka', 'brand_id');
@@ -57,6 +61,9 @@ class Product extends Model
     }
     public function Colors() {
         return $this->hasMany('App\Product_color', 'product_id');
+    }
+    public function Color() {
+        return $this->belongsTo('App\Color', 'color_id');
     }
     public function Features() {
         return $this->hasMany('App\Product_feature', 'product_id');

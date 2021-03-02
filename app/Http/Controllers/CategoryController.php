@@ -25,7 +25,7 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api' , ['except' => ['show_six_cat','getCategoryOptions','show_five_cat', 'show_four_cat','show_third_cat','show_second_cat','show_first_cat','getcategories', 'getAdSubCategories', 'get_sub_categories_level2', 'get_sub_categories_level3', 'get_sub_categories_level4','get_sub_categories_level5', 'getproducts']]);
+        $this->middleware('auth:api' , ['except' => ['sort_products','show_six_cat','getCategoryOptions','show_five_cat', 'show_four_cat','show_third_cat','show_second_cat','show_first_cat','getcategories', 'getAdSubCategories', 'get_sub_categories_level2', 'get_sub_categories_level3', 'get_sub_categories_level4','get_sub_categories_level5', 'getproducts']]);
     }
     public function getcategories(Request $request){
         Session::put('api_lang',$request->lang);
@@ -243,7 +243,7 @@ class CategoryController extends Controller
 
          for($i = 0; $i < count($products); $i++){
             if(auth()->user() != null){
-                
+
                 $fav_it = Favorite::where('user_id',auth()->user()->id)->where('product_id',$products[$i]['id'])->first();
                 if($fav_it != null){
                     $products[$i]['favorit'] = true;
@@ -377,7 +377,7 @@ class CategoryController extends Controller
 
          for($i = 0; $i < count($products); $i++){
             if(auth()->user() != null){
-                
+
                 $fav_it = Favorite::where('user_id',auth()->user()->id)->where('product_id',$products[$i]['id'])->first();
                 if($fav_it != null){
                     $products[$i]['favorit'] = true;
@@ -560,6 +560,59 @@ class CategoryController extends Controller
     }
     //nasser code
     // get ad categories for create ads
+    public function sort_products(Request $request){
+        $validator = Validator::make($request->all() , [
+            'category_id' => 'required',
+            'type' => 'required',
+        ]);
+        if($validator->fails() && !isset($request->sub_category_level2_id) && !isset($request->sub_category_level1_id)) {
+            $response = APIHelpers::createApiResponse(true , 406 ,  'بعض الحقول مفقودة' ,  'بعض الحقول مفقودة' , null , $request->lang );
+            return response()->json($response , 406);
+        }
+        if($request->lang == 'en'){
+            if ($request->sub_category_id != 0) {
+                $data['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();
+                $data['category'] = Category::where('id', $request->category_id)->select('id', 'title_en as title')->first();
+            }
+        }else{
+            if ($request->sub_category_id != 0) {
+                $data['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_ar as title')->get()->toArray();
+                $data['category'] = Category::where('id', $request->category_id)->select('id', 'title_ar as title')->first();
+            }
+        }
+        $products = Product::where('status' , 1)->where('publish','Y')->where('deleted',0);
+        if($request->type == 1){
+            $products = $products->orderBy('price' , 'asc');
+        }else if($request->type == 2){
+            $products = $products->orderBy('price' , 'desc');
+        }else if($request->type == 3){
+            $products = $products->orderBy('created_at' , 'desc');
+        }else if($request->type == 4){
+            $products = $products->orderBy('created_at' , 'asc');
+        }
+        if ($request->category_id != 0) {
+            $products = $products->where('category_id' , $request->category_id);
+        }
+        if($request->sub_category_id != 0){
+            $products = $products->where('sub_category_id', $request->sub_category_id);
+        }
+        $products = $products->select('id' , 'title' , 'price' ,'main_image as image' , 'pin')->get();
+        for($i = 0; $i < count($products); $i++){
+            if(auth()->user() != null){
+                $fav_it = Favorite::where('user_id',auth()->user()->id)->where('product_id',$products[$i]['id'])->first();
+                if($fav_it != null){
+                    $products[$i]['favorit'] = true;
+                }else{
+                    $products[$i]['favorit'] = false;
+                }
+            }else{
+                $products[$i]['favorit'] = false;
+            }
+        }
+        $products = $products;
+        $response = APIHelpers::createApiResponse(false , 200 ,  '' , '' , $products , $request->lang );
+        return response()->json($response , 200);
+    }
     public function show_first_cat(Request $request) {
         if($request->lang == 'en'){
             $data['categories'] = Category::where('deleted' , 0)->select('id' , 'title_en as title' ,'image')->get();
