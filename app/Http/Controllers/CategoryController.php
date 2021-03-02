@@ -562,7 +562,6 @@ class CategoryController extends Controller
     // get ad categories for create ads
     public function sort_products(Request $request){
         $validator = Validator::make($request->all() , [
-            'category_id' => 'required',
             'type' => 'required',
         ]);
         if($validator->fails() && !isset($request->sub_category_level2_id) && !isset($request->sub_category_level1_id)) {
@@ -590,9 +589,6 @@ class CategoryController extends Controller
         }else if($request->type == 4){
             $products = $products->orderBy('created_at' , 'asc');
         }
-        if ($request->category_id != 0) {
-            $products = $products->where('category_id' , $request->category_id);
-        }
         if($request->sub_category_id != 0){
             $products = $products->where('sub_category_id', $request->sub_category_id);
         }
@@ -609,7 +605,6 @@ class CategoryController extends Controller
                 $products[$i]['favorit'] = false;
             }
         }
-        $products = $products;
         $response = APIHelpers::createApiResponse(false , 200 ,  '' , '' , $products , $request->lang );
         return response()->json($response , 200);
     }

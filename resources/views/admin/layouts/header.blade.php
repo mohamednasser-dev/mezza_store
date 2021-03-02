@@ -34,9 +34,9 @@
             </li>
             <li class="nav-item theme-text">
                 @if(App::isLocale('en'))
-                    <a href="/admin-panel" class="nav-link"> <?=Auth::user()->custom['setting']['app_name_en']?></a>
+                    <a style="padding-top: 07px;" href="/admin-panel" class="nav-link"> <?=Auth::user()->custom['setting']['app_name_en']?></a>
                 @else
-                    <a href="/admin-panel" class="nav-link"> <?=Auth::user()->custom['setting']['app_name_ar']?></a>
+                    <a style="padding-top: 07px;" href="/admin-panel" class="nav-link"> <?=Auth::user()->custom['setting']['app_name_ar']?></a>
                 @endif
             </li>
         </ul>
