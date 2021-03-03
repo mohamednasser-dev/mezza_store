@@ -108,7 +108,7 @@
                         <div class="modal-body">
                             <div class="form-group mb-4">
                                 <label for="plan_price">{{ __('messages.color_name') }}</label>
-                                <input required type="text" id="txt_title_ar" min="0" name="title_ar" class="form-control">
+                                <input required type="text" maxlength="15" id="txt_title_ar" min="0" name="title_ar" class="form-control">
                             </div>
                         </div>
                         <div class="modal-footer">

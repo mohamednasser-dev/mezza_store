@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="title">{{ __('messages.product_name') }}</label>
-                        <input required type="text" name="title" class="form-control" id="title"
+                        <input required type="text" maxlength="20" name="title" class="form-control" id="title"
                                placeholder="{{ __('messages.product_name') }}" value="">
                     </div>
                     <div class="form-group mb-4">
@@ -110,7 +110,7 @@
                                 href="javascript:void(0)" class="custom-file-container__image-clear"
                                 title="Clear Image">x</a></label>
                         <label class="custom-file-container__custom-file">
-                            <input type="file" required name="images[]" multiple
+                            <input type="file" name="images[]" multiple
                                    class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                             <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
                             <span class="custom-file-container__custom-file__custom-file-control"></span>

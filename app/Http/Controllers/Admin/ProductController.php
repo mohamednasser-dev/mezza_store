@@ -81,18 +81,18 @@ class ProductController extends AdminController
         $data['publication_date'] = $today;
         $data['publish'] = 'Y';
         $product = Product::create($data);
-
-        foreach ($request->images as $image){
-            $image_name = $image->getRealPath();
-            Cloudder::upload($image_name, null);
-            $imagereturned = Cloudder::getResult();
-            $image_id = $imagereturned['public_id'];
-            $image_format = $imagereturned['format'];
-            $image_new_name = $image_id.'.'.$image_format;
-
-            $data_image['product_id'] = $product->id ;
-            $data_image['image'] = $image_new_name ;
-            ProductImage::create($data_image);
+        if($request->images != null){
+            foreach ($request->images as $image){
+                $image_name = $image->getRealPath();
+                Cloudder::upload($image_name, null);
+                $imagereturned = Cloudder::getResult();
+                $image_id = $imagereturned['public_id'];
+                $image_format = $imagereturned['format'];
+                $image_new_name = $image_id.'.'.$image_format;
+                $data_image['product_id'] = $product->id ;
+                $data_image['image'] = $image_new_name ;
+                ProductImage::create($data_image);
+            }
         }
 //        foreach ($request->colors as $color){
 //            $color_data['product_id'] = $product->id;
@@ -121,7 +121,7 @@ class ProductController extends AdminController
                 'description' => 'required',
                 'brand_id' => 'required',
                 'color_id' => 'required',
-                'main_image' => 'required'
+                'main_image' => ''
             ]);
         if($request->main_image != null){
 
