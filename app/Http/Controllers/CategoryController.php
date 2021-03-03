@@ -515,13 +515,6 @@ class CategoryController extends Controller
     }
 
     public function getproducts(Request $request){
-        $validator = Validator::make($request->all() , [
-            'category_id' => 'required'
-        ]);
-        if($validator->fails() && !isset($request->sub_category_level2_id) && !isset($request->sub_category_level1_id)) {
-            $response = APIHelpers::createApiResponse(true , 406 ,  'بعض الحقول مفقودة' ,  'بعض الحقول مفقودة' , null , $request->lang );
-            return response()->json($response , 406);
-        }
 
         if($request->lang == 'en'){
             if ($request->sub_category_id != 0) {
@@ -535,9 +528,6 @@ class CategoryController extends Controller
             }
         }
         $products = Product::where('status' , 1)->where('publish','Y')->where('deleted',0);
-        if ($request->category_id != 0) {
-            $products = $products->where('category_id' , $request->category_id);
-        }
         if($request->sub_category_id != 0){
             $products = $products->where('sub_category_id', $request->sub_category_id);
         }
