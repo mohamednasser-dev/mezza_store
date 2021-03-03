@@ -22,7 +22,7 @@ class CategoryController extends AdminController{
         $image_new_name = $image_id.'.'.$image_format;
 
         $category = new Category();
-        $category->title_en = $request->title_en;
+//        $category->title_en = $request->title_en;
         $category->title_ar = $request->title_ar;
         $category->image = $image_new_name;
         $category->save();
@@ -57,7 +57,7 @@ class CategoryController extends AdminController{
             $image_new_name = $image_id.'.'.$image_format;
             $category->image = $image_new_name;
         }
-        $category->title_en = $request->title_en;
+//        $category->title_en = $request->title_en;
         $category->title_ar = $request->title_ar;
         $category->save();
         return redirect('admin-panel/categories/show');

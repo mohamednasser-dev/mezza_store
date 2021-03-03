@@ -23,7 +23,7 @@ class SubCategoryController extends AdminController
             [
                 'category_id' => 'required',
                 'title_ar' => 'required',
-                'title_en' => 'required',
+//                'title_en' => 'required',
                 'image' => 'required'
             ]);
 
@@ -55,7 +55,7 @@ class SubCategoryController extends AdminController
         $data = $this->validate(\request(),
             [
                 'title_ar' => 'required',
-                'title_en' => 'required'
+//                'title_en' => 'required'
             ]);
         if($request->file('image')){
             $image = $model->image;

@@ -26,10 +26,10 @@
                 <label for="plan_price">{{ __('messages.name_ar') }}</label>
                 <input required type="text" name="title_ar" class="form-control" >
             </div>
-            <div class="form-group mb-4">
-                <label for="plan_price">{{ __('messages.name_en') }}</label>
-                <input required type="text" name="title_en" class="form-control" >
-            </div>
+{{--            <div class="form-group mb-4">--}}
+{{--                <label for="plan_price">{{ __('messages.name_en') }}</label>--}}
+{{--                <input required type="text" name="title_en" class="form-control" >--}}
+{{--            </div>--}}
             <input type="submit" value="{{ __('messages.add') }}" class="btn btn-primary">
         </form>
     </div>

@@ -27,10 +27,10 @@
                 <label for="title_ar">{{ __('messages.name_ar') }}</label>
                 <input required type="text" name="title_ar" class="form-control" id="title_ar" placeholder="{{ __('messages.name_ar') }}" value="" >
             </div>
-            <div class="form-group mb-4">
-                <label for="title_ar">{{ __('messages.name_en') }}</label>
-                <input required type="text" name="title_en" class="form-control" id="title_en" placeholder="{{ __('messages.name_en') }}" value="" >
-            </div>
+{{--            <div class="form-group mb-4">--}}
+{{--                <label for="title_ar">{{ __('messages.name_en') }}</label>--}}
+{{--                <input required type="text" name="title_en" class="form-control" id="title_en" placeholder="{{ __('messages.name_en') }}" value="" >--}}
+{{--            </div>--}}
             <input type="submit" value="{{ __('messages.add') }}" class="btn btn-primary">
         </form>
     </div>
