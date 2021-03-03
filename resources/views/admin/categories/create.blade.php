@@ -25,7 +25,7 @@
             </div>
             <div class="form-group mb-4">
                 <label for="title_ar">{{ __('messages.name_ar') }}</label>
-                <input required type="text" maxlength="15" name="title_ar" class="form-control" id="title_ar" placeholder="{{ __('messages.name_ar') }}" value="" >
+                <input required type="text" maxlength="25" name="title_ar" class="form-control" id="title_ar" placeholder="{{ __('messages.name_ar') }}" value="" >
             </div>
 {{--            <div class="form-group mb-4">--}}
 {{--                <label for="title_ar">{{ __('messages.name_en') }}</label>--}}

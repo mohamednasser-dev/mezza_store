@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="title">{{ __('messages.product_name') }}</label>
-                        <input required type="text" maxlength="20" name="title" class="form-control" id="title"
+                        <input required type="text" name="title" class="form-control" id="title"
                                placeholder="{{ __('messages.product_name') }}" value="">
                     </div>
                     <div class="form-group mb-4">

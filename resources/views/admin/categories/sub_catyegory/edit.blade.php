@@ -27,7 +27,7 @@
             </div>
             <div class="form-group mb-4">
                 <label for="plan_price">{{ __('messages.name_ar') }}</label>
-                <input required type="text" maxlength="15" value="{{$data->title_ar}}" name="title_ar" class="form-control" >
+                <input required type="text" maxlength="25" value="{{$data->title_ar}}" name="title_ar" class="form-control" >
             </div>
 {{--            <div class="form-group mb-4">--}}
 {{--                <label for="plan_price">{{ __('messages.name_en') }}</label>--}}
