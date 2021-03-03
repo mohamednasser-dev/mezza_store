@@ -515,7 +515,6 @@ class CategoryController extends Controller
     }
 
     public function getproducts(Request $request){
-
         if($request->lang == 'en'){
             if ($request->sub_category_id != 0) {
                 $data['sub_category'] = SubCategory::where('deleted' , '0')->where('id' , $request->sub_category_id)->select('id' , 'image' , 'title_en as title')->get()->toArray();

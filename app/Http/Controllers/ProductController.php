@@ -174,7 +174,7 @@ class ProductController extends Controller
                           ->where('publish' , 'Y')
                           ->where('deleted', 0)
                           ->select('id' , 'title' , 'price' , 'type','main_image as image')
-                          ->limit(3)
+                          ->limit(4)
                           ->get();
         $response = APIHelpers::createApiResponse(false , 200 ,  '', '' ,array( 'product'=>$data,
             'related'=>$related), $request->lang );
