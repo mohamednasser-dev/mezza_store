@@ -29,7 +29,13 @@ class CategoryController extends Controller
     }
     public function getcategories(Request $request){
         Session::put('api_lang',$request->lang);
-        $slider_ads = Ad::select('id' , 'image' , 'type' , 'content')->get();
+        $slider_ads = Ad::select('id' , 'image' , 'type' , 'content')
+                        ->get()
+                        ->map(function($ads){
+                            $product =  Product::where('id',$ads->content)->first();
+                            $ads->title = $product->title;
+                            return $ads;
+                        });
         if ($request->lang == 'en') {
             $categories = Category::where('deleted' , 0)
                                 ->select('id' , 'title_en as title','image')
