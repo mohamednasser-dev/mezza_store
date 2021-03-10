@@ -95,7 +95,7 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
     Route::post('/cities/area/store' , 'CityController@store_area')->name('area.store');
     Route::post('/cities/area/update/{id}' , 'CityController@update_area')->name('area.update');
     Route::get('/cities/area/delete/{id}' , 'CityController@destroy_area')->name('area.delete');
-    
+
 
     Route::resource('balance_packages' , 'BalanceBackagesController');
     Route::post('/balance_p/update/{id}' , 'BalanceBackagesController@update')->name('balance_p.update');
@@ -199,17 +199,17 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
         Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('add' , 'ProductController@AddGet');
         Route::post('add' , 'ProductController@AddPost')->name("products.store");
-        
+
         Route::get('colors', 'ProductController@colors')->name("products.colors");
         Route::get('colors/delete/{id}', 'ProductController@color_delete')->name("color.delete");
         Route::post('colors/update', 'ProductController@color_update')->name("color.update");
         Route::post('colors/store', 'ProductController@color_store')->name("color.store");
-      
+
         Route::get('brands', 'ProductController@brands')->name("brands.brands");
         Route::get('brands/delete/{id}', 'ProductController@brand_delete')->name("brands.delete");
         Route::post('brands/update', 'ProductController@brand_update')->name("brands.update");
         Route::post('brands/store', 'ProductController@brand_store')->name("brands.store");
-        
+
         Route::get('show', 'ProductController@show')->name("products.index");
         Route::get('edit/{id}' , 'ProductController@edit')->name("products.edit");
         Route::post('edit/{id}' , 'ProductController@EditPost')->name("products.update");
@@ -308,8 +308,7 @@ Route::group(['middleware'=>'language','prefix' => "admin-panel",'namespace' => 
     Route::get('models/delete/{id}' , 'BrandTypeModelsController@destroy')->name("models.delete");
 
     Route::resource('orders', 'OrdersController');
-    Route::get('orders/status/arrived/{id}', 'OrdersController@status_arrived')->name('orders.status.arrived');
-    Route::get('orders/status/reject/{id}', 'OrdersController@status_reject')->name('orders.status.reject');
+    Route::get('orders/status/{status}/{id}', 'OrdersController@change_status')->name('orders.change.status');
 
 });
 

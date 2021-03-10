@@ -22,6 +22,7 @@
                         <th class="text-center blue-color">{{ __('messages.address') }}</th>
                         <th class="text-center blue-color">{{ __('messages.date') }}</th>
                         <th class="text-center blue-color">{{ __('messages.products') }}</th>
+                        <th class="text-center blue-color">{{ __('messages.status') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,16 +42,46 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference5">
-                                        <a class="dropdown-item" href="{{route('orders.status.arrived',$row->id)}}" style="color: green; text-align: center;">{{ __('messages.arrived') }}</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{route('orders.status.reject',$row->id)}}" style="color: red; text-align: center;">{{ __('messages.reject') }}</a>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'accept','id'=>$row->id])}}" style="color: #2196f3; text-align: center;">{{ __('messages.accept_order') }}</a>
+                                            <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'execution','id'=>$row->id])}}" style="color: #f5b455; text-align: center;">{{ __('messages.make_it') }}</a>
+                                            <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'arrived','id'=>$row->id])}}" style="color: green; text-align: center;">{{ __('messages.arrived') }}</a>
+                                            <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'rejected','id'=>$row->id])}}" style="color: red; text-align: center;">{{ __('messages.reject') }}</a>
                                     </div>
                                 </div>
-                            @elseif($row->status == 'rejected')
-                                <h5 style="color:red;">{{ __('messages.rejected') }}</h5>
-                            @elseif($row->status == 'arrived')
-                                <h5 style="color:green;">{{ __('messages.arrived') }}</h5>
-                            @endif
+                            @elseif($row->status == 'accept')
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info btn-sm">{{ __('messages.accept_order') }}</button>
+                                    <button type="button" class="btn btn-info btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference5">
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'execution','id'=>$row->id])}}" style="color: #f5b455; text-align: center;">{{ __('messages.make_it') }}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'arrived','id'=>$row->id])}}" style="color: green; text-align: center;">{{ __('messages.arrived') }}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'rejected','id'=>$row->id])}}" style="color: red; text-align: center;">{{ __('messages.reject') }}</a>
+                                    </div>
+                                </div>
+                                @elseif($row->status == 'execution')
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning btn-sm">{{ __('messages.make_it') }}</button>
+                                        <button type="button" class="btn btn-warning btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference5">
+                                            <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'arrived','id'=>$row->id])}}" style="color: green; text-align: center;">{{ __('messages.arrived') }}</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{{route('orders.change.status',['status'=> 'rejected','id'=>$row->id])}}" style="color: red; text-align: center;">{{ __('messages.reject') }}</a>
+                                        </div>
+                                    </div>
+                                @elseif($row->status == 'arrived')
+                                    <h5 style="color:green;">{{ __('messages.arrived') }}</h5>
+                                @elseif($row->status == 'rejected')
+                                    <h5 style="color:red;">{{ __('messages.rejected') }}</h5>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

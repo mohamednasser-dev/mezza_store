@@ -21,6 +21,7 @@
                             <th class="text-center">Id</th>
                             <th class="text-center">{{ __('messages.image') }}</th>
                             <th class="text-center">{{ __('messages.product_name') }}</th>
+                            <th class="text-center">{{ __('messages.view_num') }}</th>
                             <th class="text-center">{{ __('messages.publication_date') }}</th>
                             <th class="text-center">{{ __('messages.archived_or_not') }}</th>
                             <th class="text-center">{{ __('messages.details') }}</th>
@@ -39,6 +40,7 @@
                                     <td class="text-center"><?=$i;?></td>
                                     <td class="text-center"><img style="height: 50px;" src="https://res.cloudinary.com/dwevccen7/image/upload/v1614430614/{{ $product->main_image }}"  /></td>
                                     <td class="text-center">{{ $product->title }}</td>
+                                    <td class="text-center">{{ $product->views }}</td>
                                     <td class="text-center">
                                         @if( $product->publication_date != null)
                                             {{date('Y-m-d', strtotime($product->publication_date))}}

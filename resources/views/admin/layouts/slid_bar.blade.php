@@ -7,45 +7,45 @@
         <nav id="sidebar">
             <div class="shadow-bottom"></div>
             <ul class="list-unstyled menu-categories" id="accordionExample">
-                <!-- @if(in_array(1 , Auth::user()->custom['admin_permission']))
-                    <li class="menu users">
-                        <a href="#users" data-active="true" data-toggle="collapse" aria-expanded="true"
-                           class="dropdown-toggle first-link">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-users">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                                <span>{{ __('messages.users') }}
-                                    @if( Auth::user()->custom['user_count'] > 0 )
-                                        <span class="unreadcount">
-                                        <span class="insidecount">
-                                            <?=Auth::user()->custom['user_count']?>
-                                        </span>
-                                    </span>
-                                    @endif
-                                </span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-chevron-right">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled show" id="users" data-parent="#accordionExample">
-                            @if(Auth::user()->add_data)
-                                <li class="active add">
-                                    <a href="/admin-panel/users/add"> {{ __('messages.add') }} </a>
+            <!-- @if(in_array(1 , Auth::user()->custom['admin_permission']))
+                <li class="menu users">
+                    <a href="#users" data-active="true" data-toggle="collapse" aria-expanded="true"
+                       class="dropdown-toggle first-link">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span>{{ __('messages.users') }}
+                @if( Auth::user()->custom['user_count'] > 0 )
+                    <span class="unreadcount">
+                    <span class="insidecount">
+<?=Auth::user()->custom['user_count']?>
+                        </span>
+                    </span>
+@endif
+                    </span>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" class="feather feather-chevron-right">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
+            <ul class="collapse submenu list-unstyled show" id="users" data-parent="#accordionExample">
+@if(Auth::user()->add_data)
+                    <li class="active add">
+                        <a href="/admin-panel/users/add"> {{ __('messages.add') }} </a>
                                 </li>
                             @endif
-                            <li class="show">
-                                <a href="/admin-panel/users/show"> {{ __('messages.show') }} </a>
+                    <li class="show">
+                        <a href="/admin-panel/users/show"> {{ __('messages.show') }} </a>
                             </li>
                         </ul>
                     </li>
@@ -120,9 +120,9 @@
                         </a>
                     </li>
                 @endif
-                <!-- @if(in_array(14 , Auth::user()->custom['admin_permission']))
-                    <li class="menu cities">
-                        <a href="{{route('cities.index')}}" class="dropdown-toggle first-link">
+            <!-- @if(in_array(14 , Auth::user()->custom['admin_permission']))
+                <li class="menu cities">
+                    <a href="{{route('cities.index')}}" class="dropdown-toggle first-link">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -136,9 +136,9 @@
                         </a>
                     </li>
                 @endif -->
-                <!-- @if(in_array(16 , Auth::user()->custom['admin_permission']))
-                    <li class="menu balance_packages">
-                        <a href="{{route('balance_packages.index')}}" class="dropdown-toggle first-link">
+            <!-- @if(in_array(16 , Auth::user()->custom['admin_permission']))
+                <li class="menu balance_packages">
+                    <a href="{{route('balance_packages.index')}}" class="dropdown-toggle first-link">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                 <span>{{ __('messages.balance_packages') }}</span>
@@ -150,46 +150,27 @@
                     <li class="menu orders">
                         <a href="{{route('orders.index')}}" class="dropdown-toggle first-link">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                <span>{{ __('messages.orders') }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-clipboard">
+                                    <path
+                                        d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                </svg>
+                                <span>{{ __('messages.orders') }}
+                                    @php $new_orders =  \App\Order::where('status','new')->get(); @endphp
+                                    @if( count($new_orders) > 0 )
+                                    <span class="unreadcount">
+                                        <span class="insidecount">
+                                            {{count($new_orders)}}
+                                        </span>
+                                    </span>
+                                    @endif
+                                </span>
                             </div>
                         </a>
                     </li>
                 @endif
-                <!-- @if(in_array(6 , Auth::user()->custom['admin_permission']))
-                    <li class="menu notifications">
-                        <a href="#notifications" data-active="true" data-toggle="collapse" aria-expanded="true"
-                           class="dropdown-toggle first-link">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-bell">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                </svg>
-                                <span>{{ __('messages.notifications') }}</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-chevron-right">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled show" id="notifications"
-                            data-parent="#accordionExample">
-                            @if(Auth::user()->add_data)
-                                <li class="send">
-                                    <a href="/admin-panel/notifications/send"> {{ __('messages.send') }} </a>
-                                </li>
-                            @endif
-                            <li class="show">
-                                <a href="/admin-panel/notifications/show"> {{ __('messages.show') }} </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif -->
                 @if(in_array(2 , Auth::user()->custom['admin_permission']))
                     <li class="menu app_pages">
                         <a href="#app_pages" data-toggle="collapse" aria-expanded="false"
@@ -233,20 +214,26 @@
                     <li class="menu contact_us">
                         <a href="/admin-panel/contact_us" class="dropdown-toggle first-link">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-inbox">
+                                    <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                                    <path
+                                        d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                                </svg>
                                 <span>{{ __('messages.contact_us') }}
-                                      @if( Auth::user()->custom['contact_us_count'] > 0 )
-                                      <span class="unreadcount" >
-                                            <span class="insidecount" >
+                                    @if( Auth::user()->custom['contact_us_count'] > 0 )
+                                        <span class="unreadcount">
+                                            <span class="insidecount">
                                                 <?=Auth::user()->custom['contact_us_count']?>
                                             </span>
                                       </span>
-                                      @endif
+                                    @endif
                                  </span>
                             </div>
                         </a>
                     </li>
-                    @endif
+                @endif
 
                 @if(in_array(9 , Auth::user()->custom['admin_permission']))
                     <li class="menu managers">
@@ -281,37 +268,37 @@
                             </li>
                         </ul>
                     </li>
-                @endif
-{{--                @if(in_array(7 , Auth::user()->custom['admin_permission']))--}}
-{{--                    <li class="menu settings">--}}
-{{--                        <a href="/admin-panel/settings" class="dropdown-toggle first-link">--}}
-{{--                            <div class="">--}}
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"--}}
-{{--                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
-{{--                                     stroke-linejoin="round" class="feather feather-settings">--}}
-{{--                                    <circle cx="12" cy="12" r="3"></circle>--}}
-{{--                                    <path--}}
-{{--                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>--}}
-{{--                                </svg>--}}
-{{--                                <span>{{ __('messages.settings') }}</span>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endif--}}
+            @endif
+            {{--                @if(in_array(7 , Auth::user()->custom['admin_permission']))--}}
+            {{--                    <li class="menu settings">--}}
+            {{--                        <a href="/admin-panel/settings" class="dropdown-toggle first-link">--}}
+            {{--                            <div class="">--}}
+            {{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"--}}
+            {{--                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
+            {{--                                     stroke-linejoin="round" class="feather feather-settings">--}}
+            {{--                                    <circle cx="12" cy="12" r="3"></circle>--}}
+            {{--                                    <path--}}
+            {{--                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>--}}
+            {{--                                </svg>--}}
+            {{--                                <span>{{ __('messages.settings') }}</span>--}}
+            {{--                            </div>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                @endif--}}
 
 
-                <!-- @if(in_array(10 , Auth::user()->custom['admin_permission']))
-                    <li class="menu databasebackup">
-                        <a href="/admin-panel/databasebackup" class="dropdown-toggle first-link">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-database">
-                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                                </svg>
-                                <span>{{ __('messages.databasebackup') }}</span>
+            <!-- @if(in_array(10 , Auth::user()->custom['admin_permission']))
+                <li class="menu databasebackup">
+                    <a href="/admin-panel/databasebackup" class="dropdown-toggle first-link">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-database">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            </svg>
+                            <span>{{ __('messages.databasebackup') }}</span>
                             </div>
                         </a>
                     </li>

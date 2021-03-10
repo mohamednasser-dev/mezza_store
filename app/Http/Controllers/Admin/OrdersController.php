@@ -16,7 +16,7 @@ class OrdersController extends AdminController
      */
     public function index()
     {
-        $data = Order::orderBy('created_at','desc')->get();
+        $data = Order::orderBy('id','desc')->get();
         return view('admin.orders.index',compact('data'));
     }
 
@@ -63,39 +63,19 @@ class OrdersController extends AdminController
     {
         //
     }
-    public function status_arrived($id)
+    public function change_status( $status ,$id)
     {
-        $data['status'] = 'arrived';
-        Order::where('id',$id)->update($data);
-        session()->flash('success', trans('messages.status_changed_s'));
-        return back();
-    }
-    public function status_reject($id)
-    {
-        $data['status'] = 'rejected';
+        $data['status'] = $status;
         Order::where('id',$id)->update($data);
         session()->flash('success', trans('messages.status_changed_s'));
         return back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
